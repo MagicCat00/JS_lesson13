@@ -8,18 +8,11 @@ const headerInput = document.querySelector('.header-input')
 const todoList = document.querySelector('.todo-list')
 const todoCompleted = document.querySelector('.todo-completed')
 
-const toDoData = [
-    {
-        text: 'Сварить кофе',
-        completed: false
-    },
-    {
-        text: 'Помыть посуду',
-        completed: true
-    }
-]
+const toDoData = []
 
 const render = function () {
+    todoList.innerHTML = ''
+    todoCompleted.innerHTML = ''
     toDoData.forEach(function(item) {
         //todo-item
         const li = document.createElement('li')
@@ -33,7 +26,16 @@ const render = function () {
             '<button class="todo-complete"></button>' +
 		'</div>'
 
-        console.log(li);
+        if(item.completed) {
+            todoCompleted.append(li)
+        } else {
+            todoList.append(li)
+        }
+
+        li.querySelector('.todo-complete').addEventListener('click', function() {
+            item.completed = !item.completed
+            render()
+        })
     })
 }
 //каждое значение дела
