@@ -20,8 +20,23 @@ const toDoData = [
 ]
 
 const render = function () {
-    console.log(toDoData);
+    toDoData.forEach(function(item) {
+        //todo-item
+        const li = document.createElement('li')
+
+        li.classList.add('todo-item')
+
+        li.innerHTML = '<span class="text-todo">' + item.text + '</span>' +
+
+        '<div class="todo-buttons">' +
+            '<button class="todo-remove"></button>' +
+            '<button class="todo-complete"></button>' +
+		'</div>'
+
+        console.log(li);
+    })
 }
+//каждое значение дела
 
 todoControl.addEventListener('submit', function (event) {
     event.preventDefault()
